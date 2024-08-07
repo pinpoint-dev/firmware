@@ -18,10 +18,11 @@ SHELL:=/bin/bash
 # BOARD_E104BT5032A is for E104-BT5032A board https://www.aliexpress.com/item/4000538644215.html
 # BOARD_ALIEXPRESS is for this "AliExpress beacon" https://www.aliexpress.com/item/32826502025.html
 # BOARD_ALIEXPRESS_NO_XTAL is for AliExpress beacons without an XTAL
+# BOARD_PINPOINT is for the Pinpoint board designed by us
 # ADV_KEY_BASE64 the advertisment key(base64) from OpenHaystack app
 
 ADV_KEY_BASE64 ?=
-BOARD ?= BOARD_SIMPLE
+BOARD ?= BOARD_PINPOINT
 NEW_ADV_KEY_HEX := $(if $(ADV_KEY_BASE64),$(shell base64 -D <<< $(ADV_KEY_BASE64) | xxd -p),)
 
 # Compile for nrf52 by default, use "NRF_MODEL=nrf51 make" to compile for nrf51 platform

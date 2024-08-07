@@ -50,6 +50,8 @@
   #include "aliexpress_board.h"
 #elif defined(BOARD_ALIEXPRESS_NO_XTAL)
   #include "aliexpress_board_no_xtal.h"
+#elif defined(BOARD_PINPOINT)
+  #include "pinpoint_board.h"
 #elif defined(BOARD_SIMPLE)
   #include "simple_board.h"
 #else

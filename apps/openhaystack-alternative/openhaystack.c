@@ -20,16 +20,16 @@ static uint8_t offline_finding_adv_template[] = {
 };
 
 /*
- * set_addr_from_key will set the bluetooth address from the first 6 bytes of the key used to be advertised
+ * set_addr_from_key will set the bluetooth address from the first 3 bytes of the key used to be advertised
  */
 void set_addr_from_key(char key[28]) {
-	/* copy first 6 bytes */
-	addr[5] = key[0] | 0b11000000;
-	addr[4] = key[1];
-	addr[3] = key[2];
-	addr[2] = key[3];
-	addr[1] = key[4];
-	addr[0] = key[5];
+	/* Set the first three bytes to be static then copy the first 3 bytes */
+	addr[5] = 0b11011110; // :)
+	addr[4] = 0b10101101;
+	addr[3] = 0b01101001;
+	addr[2] = key[0];
+	addr[1] = key[1];
+	addr[0] = key[2];
 }
 
 /*
