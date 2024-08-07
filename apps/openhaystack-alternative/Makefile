@@ -41,7 +41,9 @@ ifeq ($(NRF_MODEL), nrf51)
 else
 	mergehex -m ../../nrf5x-base/sdk/nrf51_sdk_11.0.0/components/softdevice/s132/hex/s132_nrf52_2.0.0_softdevice.hex _build/openhaystack-alternative_s132.hex -o compiled/$(NRF_MODEL)_firmware.hex
 endif
-ifneq (, $(shell which objcopy))
+ifneq (, $(shell which arm-none-eabi-objcopy))
+	arm-none-eabi-objcopy --input-target=ihex --output-target=binary compiled/$(NRF_MODEL)_firmware.hex compiled/$(NRF_MODEL)_firmware.bin
+else ifneq (, $(shell which objcopy))
 	objcopy --input-target=ihex --output-target=binary compiled/$(NRF_MODEL)_firmware.hex compiled/$(NRF_MODEL)_firmware.bin
 else ifneq (, $(shell which gobjcopy))
 	gobjcopy --input-target=ihex --output-target=binary compiled/$(NRF_MODEL)_firmware.hex compiled/$(NRF_MODEL)_firmware.bin
