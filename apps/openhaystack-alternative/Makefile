@@ -69,8 +69,10 @@ ifneq ($(NEW_ADV_KEY_HEX),)
 		sed 's/$(shell echo -n 'OFFLINEFINDINGPUBLICKEYHERE!' | xxd -p)/$(NEW_ADV_KEY_HEX)/' | \
 		xxd -r -p > compiled/$(NRF_MODEL)_firmware_patched.bin
 endif
+pinpointinstall:
+	openocd -f interface/cmsis-dap.cfg -f target/nrf52.cfg -c "init; halt; program compiled/$(NRF_MODEL)_firmware_patched.bin; reset; exit;"
 
-LIBRARY_PATHS += .
+LIBRARY_PATHS += . ../../nrf5x-base/peripherals
 #SOURCE_PATHS += .
 
 NRF_BASE_PATH ?= ../../nrf5x-base

@@ -16,6 +16,8 @@
 extern "C" {
 #endif
 
+#define DEVICE_NAME "Pinpoint Test" //TODO: make this actually work
+
 #define NRF_CLOCK_LFCLKSRC {.source        = NRF_CLOCK_LF_SRC_RC,            \
                             .rc_ctiv       = 16,                             \
                             .rc_temp_ctiv  = 2,                              \
